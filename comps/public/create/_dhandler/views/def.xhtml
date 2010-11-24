@@ -1,0 +1,99 @@
+<h1>Create a new app</h1>
+<form name="newapp" method="post" action="">
+	<fieldset>
+		<legend>Application main settings</legend>
+		<p>
+			<label for="path">Path</label>
+			<input type="text" name="path" id="path" value=""/>
+		</p>
+		<p>
+			<label for="name">Name</label>
+			<input type="text" name="name" id="name" value=""/>
+		</p>
+		<p>
+			<label for="locales">Locales</label>
+			<select multiple="multiple" name="locales" id="locales">
+				<tal:block tal:repeat="locale orm: Locale/FindAll">
+					<tal:block tal:define="locale_code locale/getLocale; locale_desc locale/getDescription;">
+						<option tal:content="string: ${locale_code} - ${locale_desc}" tal:attributes="value locale_code; selected php: locale_code EQ default_locale"/>
+					</tal:block>
+				</tal:block>
+			</select>
+		</p>
+		<p>
+			<label for="errors">Errors</label>
+			<input type="checkbox" id="errors" name="errors"/>
+		</p>
+		<p>
+			<label for="cache">Caching</label>
+			<input type="checkbox" id="cache" name="cache"/>
+		</p>
+		<p>
+			<label for="cache_lifetime">Default cache life (0 = never expire)</label>
+			<input type="text" id="cache_lifetime" name="cache_lifetime"/>
+		</p>
+		<p>
+			<label for="cache_directory">Cache directory</label>
+			<input type="text" id="cache_directory" name="cache_directory"/>
+		</p>
+		<p>
+			<label for="profiling">Profiling</label>
+			<input type="checkbox" id="profiling" name="profiling"/>
+		</p>
+		<p>
+			<label for="logging">Logging</label>
+			<input type="checkbox" id="logging" name="logging"/>
+		</p>
+		<p>
+			<label for="logs_directory">Logs directory</label>
+			<input type="text" id="logs_directory" name="logs_directory"/>
+		</p>
+		<p>
+			<label for="debug">Debug level</label>
+			<select id="debug" name="debug">
+				<option value="FALSE">Disabled</option>
+				<option value="HTML">HTML</option>
+				<option value="JSON">JSON</option>
+			</select>
+		</p>
+		<p>
+			<label for="default_view_type">Default views type</label>
+			<select id="default_view_type" name="default_view_type">
+				<option value="PHP">Plain PHP</option>
+				<option value="TAL">TAL</option>
+			</select>
+		</p>
+	</fieldset>
+	<fieldset>
+		<legend>Application domains settings</legend>
+		<div class="domain">
+			<h2 tal:content="default_locale"></h2>
+			<p>
+				<label tal:attributes="for string:default_domain_${default_locale}">Default domain</label>
+				<input type="text" tal:attributes="id string:default_domain_${default_locale}; name string:default_domain[${default_locale}]" value=""/>
+			</p>
+			<p>
+				<label tal:attributes="for string:channel_${default_locale}">Channel</label>
+				<input type="text" tal:attributes="id string:channel_${default_locale}; name string:channel[${default_locale}]" value=""/>
+			</p>
+			<ul>
+				<li>
+					<label tal:attributes="for string:domain_dev_${default_locale}">Dev</label>
+					<input type="text" tal:attributes="name string:domain[dev][${default_locale}]; id string:domain_dev_${default_locale}"/>
+				</li>
+				<li>
+					<label tal:attributes="for string:domain_dev_${default_locale}">QA</label>
+					<input type="text" tal:attributes="name string:domain[dev][${default_locale}]; id string:domain_dev_${default_locale}"/>
+				</li>
+				<li>
+					<label tal:attributes="for string:domain_dev_${default_locale}">UAT</label>
+					<input type="text" tal:attributes="name string:domain[dev][${default_locale}]; id string:domain_dev_${default_locale}"/>
+				</li>
+				<li>
+					<label tal:attributes="for string:domain_dev_${default_locale}">Prod</label>
+					<input type="text" tal:attributes="name string:domain[dev][${default_locale}]; id string:domain_dev_${default_locale}"/>
+				</li>
+			</ul>
+		</div>
+	</fieldset>
+</form>

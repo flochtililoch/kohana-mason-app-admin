@@ -1,0 +1,16 @@
+#login
+{
+
+}
+#login .error
+{
+
+}
+#username, #password, #signin
+{
+	float:right;
+}
+#login .register
+{
+	float:right;
+}

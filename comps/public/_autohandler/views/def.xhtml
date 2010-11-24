@@ -1,0 +1,16 @@
+<tal:block metal:fill-slot="body">
+	<div id="wrapper">
+		<div tal:replace="structure comp: /login"/>
+    	<div tal:condition="logged_in" tal:replace="structure after"/>
+    </div>
+	<script tal:replace="structure comp: /scripts"/>
+	<tal:block tal:condition="debug/html | debug/json" tal:replace="structure comp: /debug debug"/>
+</tal:block>
+<tal:block metal:fill-slot="head">
+	<title i18n:translate="">Hello World!</title>
+	<link tal:replace="structure comp: /stylesheets"/>
+</tal:block>
+<html xmlns:i18n="http://xml.zope.org/namespaces/i18n" xmlns:tal="http://xml.zope.org/namespaces/tal">
+    <head metal:define-slot="head"/>
+    <body metal:define-slot="body"/>
+</html>

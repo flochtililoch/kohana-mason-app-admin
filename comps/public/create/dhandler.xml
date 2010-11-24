@@ -1,0 +1,5 @@
+<comp>
+	<process>
+		<key name="default_locale">Kohana::$locale</key>
+	</process>
+</comp>
