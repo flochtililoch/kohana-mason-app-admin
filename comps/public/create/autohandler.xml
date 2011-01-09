@@ -1,0 +1,34 @@
+<comp>
+	<php>
+		<![CDATA[
+
+		$next_forms = array(
+			'dhandler' => 'domains',
+			'domains' => 'save'
+			);
+		
+		// PREPROCESS DATA
+		switch($this->request->controller)
+		{
+			case 'dhandler' :
+				
+				break;
+
+			case 'domains' :
+
+				break;
+		}
+
+		// PROCESS FORM
+		if(count($_POST))
+		{
+			Session::instance()->set($next_forms[$this->request->controller], $_POST);
+			$this->request->redirect(I18n::instance()->uri('create/'.$next_forms[$this->request->controller]));
+		}
+		
+		$this->data = Session::instance()->get($this->request->controller);
+		
+		]]>
+	</php>
+	<process/>
+</comp>

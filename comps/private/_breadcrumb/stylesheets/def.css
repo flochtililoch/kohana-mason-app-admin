@@ -1,0 +1,15 @@
+#breadcrumb
+{
+	list-style:none;
+}
+#breadcrumb li
+{
+	float:left;
+}
+
+#breadcrumb a:after
+{
+	content: ">";
+	color:#fff;
+	margin:0 5px;
+}

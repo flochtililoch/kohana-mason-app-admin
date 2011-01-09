@@ -1,0 +1,6 @@
+<ol id="breadcrumb" class="clearfix">
+	<li tal:repeat="link breadcrumb">
+		<span tal:condition="true: repeat/link/end" tal:content="link/label"/>
+		<a tal:condition="not: repeat/link/end" tal:attributes="href string:/${link/uri}; title link/label" tal:content="link/label"/>
+	</li>
+</ol>

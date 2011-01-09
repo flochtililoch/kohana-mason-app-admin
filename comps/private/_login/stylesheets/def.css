@@ -1,16 +1,55 @@
 #login
 {
-
+	float:right;
+	color:#666;
+	position:relative;
+}
+#login div
+{
+	display:inline;
+	margin-right:10px;
+}
+#login p
+{
+	float:left;
+	position:relative;
+}
+.js #login p label[for=username],
+.js #login p label[for=password]
+{
+	position:absolute;
+	top:1px;
+	left:4px;
+	color:#ccc;
+	text-align:left;
+}
+#login .remember_me
+{
+	position:absolute;
+	bottom:-25px;
+	right:0;
+}
+#login label[for=remember_me]
+{
+	font-size:11px;
+	line-height:22px;
+	text-align:left;
+	float:none;
+	display:inline;
+	margin:0;
+	color:#999;
+}
+#login input[name=remember_me]
+{
+	margin:0;
+}
+#login input[type=submit]
+{
+	width:90px;
 }
 #login .error
 {
-
-}
-#username, #password, #signin
-{
-	float:right;
-}
-#login .register
-{
-	float:right;
+	position:absolute;
+	top:34px;
+	left:0px;
 }

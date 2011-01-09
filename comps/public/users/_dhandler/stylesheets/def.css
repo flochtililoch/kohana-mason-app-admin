@@ -1,0 +1,11 @@
+#user_edit label
+{
+	display:block;
+    float:left;
+    width:130px;
+	text-align:right;
+}
+#user_edit input[type=submit]
+{
+	margin-left:330px;
+}

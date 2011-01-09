@@ -40,7 +40,8 @@
 		// If user is logged in
 		if($logged_in === TRUE)
 		{
-			$this->user = Auth::instance()->get_user();
+			$this->logged_user = Auth::instance()->get_user();
+			$this->user_is_admin = Auth::instance()->logged_in('admin');
 		}
 		
 		$debug = FALSE;
@@ -60,6 +61,7 @@
 		]]>
 	</php>
 	<process>
+		<key name="title" context="global">I18n::instance()->translate(Auth::instance()->logged_in() ? 'Dashboard' : 'Authentication')</key>
 		<key name="logged_in" context="global">$logged_in</key>
 		<key name="login_failed" context="global">$login_failed</key>
 		<key name="debug">$debug</key>

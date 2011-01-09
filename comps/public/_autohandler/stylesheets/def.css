@@ -2,18 +2,21 @@
  * clearfix from http://stackoverflow.com/questions/211383/which-method-of-clearfix-is-best
  */
 /* float clearing for IE6 */
-* html .clearfix{
+* html .clearfix
+{
   height: 1%;
   overflow: visible;
 }
 
 /* float clearing for IE7 */
-*+html .clearfix{
+*+html .clearfix
+{
   min-height: 1%;
 }
 
 /* float clearing for everyone else */
-.clearfix:after{
+.clearfix:after
+{
   clear: both;
   content: ".";
   display: block;
@@ -22,9 +25,102 @@
   font-size: 0;
 }
 
-#wrapper
+body
 {
-	width:600px;
-	margin-left:auto;
-	margin-right:auto;
+	background:#333;
+	font:14px Helvetica;
+	color:#fff;
+	padding:5px 20px;
+}
+a, a:visited
+{
+	color:#0771D7;
+	text-decoration:none;
+}
+h1
+{
+	font-weight: normal;
+	color:#333;
+}
+p
+{
+	margin: 10px 0;
+    padding: 0;
+}
+fieldset, input
+{
+	border:1px solid #ccc;
+}
+label
+{
+	font-size:18px;
+	line-height:29px;
+	margin-right:5px;
+	display:block;
+    float:left;
+    width:260px;
+	text-align:right;
+	position:relative;
+}
+input
+{
+	color:#666;
+	font-size:18px;
+}
+input[type=text], input[type=password], select
+{
+	height:22px;
+	width:300px;
+	margin:0 5px 0 0;
+	padding:2px;
+}
+select
+{
+	height:28px;
+	width:306px;
+	font-size:14px;
+}
+select[multiple=multiple]
+{
+	height:100px;
+}
+input[type=submit]
+{
+	background:#ddd;
+	color:#0771D7;
+	height:28px;
+}
+.error
+{
+	color:#ff600c;
+}
+.box
+{
+	color:#333;
+	background:#eee;
+	padding:15px;
+	margin:15px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 0 0 25px #999;
+	-webkit-box-shadow: 0 0 25px #999;
+	box-shadow: 0 0 25px #999;
+}
+.checkbox
+{
+	position:relative;
+}
+.checkbox label
+{
+	position:absolute;
+	left:293px;
+	top:-2px;
+	float:none;
+	text-align:left;
+	width:auto;
+}
+.checkbox input
+{
+	margin-left:263px;
 }

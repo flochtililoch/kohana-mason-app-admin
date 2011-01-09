@@ -1,0 +1,22 @@
+<comp>
+	<php>
+		<![CDATA[
+		$breadcrumb = array();
+		foreach(explode('/', Request::instance()->uri) as $key => $value)
+		{
+			$breadcrumb[$key]['uri'] = ($key > 0 ? $breadcrumb[$key-1]['uri'].'/' : '').$value;
+			$breadcrumb[$key]['label'] = ucfirst($value);
+		}
+		array_unshift(
+			$breadcrumb,
+			array(
+				'uri' => '',
+				'label' => I18n::instance()->translate('Home')
+				));
+
+		]]>
+	</php>
+	<process>
+		<key name="breadcrumb">$breadcrumb</key>
+	</process>
+</comp>

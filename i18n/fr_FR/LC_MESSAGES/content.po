@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-30 14:37+0100\n"
+"POT-Creation-Date: 2011-01-10 00:08+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -15,50 +15,213 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: /Users/flochtililoch/Work/www/var/cache/application/i18n/content\n"
-"X-Poedit-SearchPath-1: C:\\www\\work\\blah\\var\\cache\\application\\i18n\\content\n"
+"X-Poedit-SearchPath-0: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content\n"
 
-#: C:\www\work\blah\var\cache\application\i18n\content/15/15f86c051ecf0b64e5f8cdc8c689552f42595942.php:1
-msgid "Average"
-msgstr "Moyenne"
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/03/030d78d0a134fcd47480db7f0474170353487674.php:1
+msgid "Loaded extensions"
+msgstr "Extensions chargées"
 
-#: C:\www\work\blah\var\cache\application\i18n\content/2e/2ef7bde608ce5404e97d5f042f95f89f1c232871.php:1
-msgid "Hello World!"
-msgstr "Bonjour Monde!"
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/0c/0c4077fbf2267e81a1e9fe5d8c8ae2d963afe30e.php:1
+msgid "Debug level"
+msgstr "Niveau de debug"
 
-#: C:\www\work\blah\var\cache\application\i18n\content/7e/7eb0cee888ab55b559592d38eec027e9118d7d35.php:1
-msgid "Min"
-msgstr "Min"
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/10/10dec575155b562e3ead7331d37c4fc4baeadd66.php:1
+msgid "Here"
+msgstr ""
 
-#: C:\www\work\blah\var\cache\application\i18n\content/7f/7febce039c4cf1c9115e832792b7d7f24fa56d4e.php:1
-msgid "seconds"
-msgstr "secondes"
-
-#: C:\www\work\blah\var\cache\application\i18n\content/83/834981d57ea59668809e56318c8938fed9db6f76.php:1
-msgid "Kohana"
-msgstr "Kohana"
-
-#: C:\www\work\blah\var\cache\application\i18n\content/9e/9ed99e75a9b04f273de29c9fef2bd3fb53d2e2de.php:1
-msgid "Benchmark"
-msgstr "Benchmark"
-
-#: C:\www\work\blah\var\cache\application\i18n\content/a9/a95e85aed56318093b024674e217cae0bd30241d.php:1
-msgid "Max"
-msgstr "Max"
-
-#: C:\www\work\blah\var\cache\application\i18n\content/ac/ac5775b80a0f53b7dc616760b25329eccde74a7c.php:1
-msgid "Username :"
-msgstr "Pseudo :"
-
-#: C:\www\work\blah\var\cache\application\i18n\content/b2/b25928c69902557b0ef0a628490a3a1768d7b82f.php:1
-msgid "Total"
-msgstr "Total"
-
-#: C:\www\work\blah\var\cache\application\i18n\content/e7/e78b6b905f9974100c462d81ed9320392935c02c.php:1
-msgid "Application Execution"
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/1a/1a64574a22c8dc927ec38d568257ebfe95878a23.php:1
+#, fuzzy
+msgid "Application main settings"
 msgstr "Execution de l'application"
 
-#: C:\www\work\blah\var\cache\application\i18n\content/f7/f7194e6a0d0b838382b202853e7c198d693fbabc.php:1
-msgid "Requests"
-msgstr "Requêtes"
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/4c/4cb2782ae926404674b6c5748663cf1bfbe0dd58.php:1
+msgid "(0 = never expire)"
+msgstr "(0 = n'expire jamais)"
 
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/4e/4e5a2893bdcc7d239c1db72e4c4ffbe4bea73174.php:1
+msgid "Login"
+msgstr "Pseudo"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/53/536f158f6dfd529865dcb865a97bb16804e34d70.php:1
+msgid "arguments"
+msgstr ""
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/57/57f2b181d0a5e79a147ea1cdf41457f58dbbb3c9.php:1
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/59/597aa20668c03809e057c4f212eae8cc4e3cd756.php:1
+msgid "Included files"
+msgstr ""
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/63/639860fbb86cea7f96e287fa3fecca62e4bb42f8.php:1
+msgid "Lastname"
+msgstr "Nom"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/69/69363b72a58bc416a12f097eb6680b55c75420d6.php:1
+msgid "Caching enabled"
+msgstr "Cache activé"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/6e/6e157c5da4410b7e9de85f5c93026b9176e69064.php:1
+msgid "Create"
+msgstr "Créer"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/70/709a23220f2c3d64d1e1d6d18c4d5280f8d82fca.php:1
+msgid "Name"
+msgstr "Nom"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/70/70f8bb9a8a5393ef080507a89e4b98d139000d65.php:1
+msgid "Home"
+msgstr "Accueil"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/73/73e4e58b151e6afbd536be4778c6876659c8657a.php:1
+msgid "Logs directory"
+msgstr "Dossier de stockage des logs"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/78/7894d6dc450dd98d8dd2fe5f28e8d8e98adab86f.php:1
+msgid "Profiling enabled"
+msgstr "Profiling activé"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/7f/7f6dc2104e5fa2209e861028eaba8f8cd0c2ef08.php:1
+msgid "Enabled locales"
+msgstr "Cultures / Langues activées"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/84/84c29015de33e5d22422382a372caba5c58f8c01.php:1
+msgid "Username"
+msgstr "Pseudo"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/89/8970f0e691a0a23a47517698017c997507efd496.php:1
+msgid "Locale"
+msgstr "Langue & Culture"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/8b/8be3c943b1609fffbfc51aad666d0a04adf83c9d.php:1
+msgid "Password"
+msgstr "Mot de passe"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/8c/8c7e3b5d2e7aa4285b5734a9955b91e53b25c48f.php:1
+msgid "Sign off"
+msgstr "Déconnexion"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/93/934d5675cbfc44a4d38a95cdbb71ef56c09c2409.php:1
+msgid "Default views type"
+msgstr "Type de vues par défaut"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/96/96c516c137f0033797d9ce0b074ac7a1c9d3b6b5.php:1
+msgid "Welcome ${user}"
+msgstr "Bienvenue ${user}"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/a6/a6b9d69f57d94a826930e45360e373533bfd130d.php:1
+msgid "Birthday"
+msgstr "Date de naissance"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/af/afe7375907385f481c9370f047bea3529ad72ceb.php:1
+msgid "Cache life"
+msgstr "Durée de vie du cache"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/b7/b7ee3c4dd0a46c8618da4ec41c685dff32c86d6e.php:1
+msgid "Manage users"
+msgstr "Gérer les utilisateurs"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/c0/c0394a2c501298da1f23d1ab3c5c6ef58d894683.php:1
+msgid "Logging enabled"
+msgstr "Logs activés"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/c3/c38ec629fc51a51daa487e1015f9b353b36c3b5d.php:1
+msgid "User : ${username}"
+msgstr "Utilisateur : ${username}"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/ce/ced7b308a348567fbf21dd775ee496dd01207f24.php:1
+msgid "Remember me"
+msgstr "Se souvenir de moi"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/cf/cf23ba48c06d7e6d4b41a205bfb3cac3bb7b1e38.php:1
+msgid "Firstname"
+msgstr "Prénom"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/d4/d443a1185575c125d61e0af393b044d7b06ef572.php:1
+msgid "Environment"
+msgstr "Environnement"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/d5/d5e3989b7c1cff200cdefbef66b23159e41c0c3d.php:1
+msgid "Show errors"
+msgstr "Afficher les erreurs"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/d8/d87f47b47e4d5794d53fe0734c49417bd046cde0.php:1
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/e4/e45695593a71979ee6e520714617a445c6c15c42.php:1
+msgid "signin"
+msgstr "connexion"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/ed/edee9402d198b04ac77dcf5dc9cc3dac44573782.php:1
+msgid "next"
+msgstr "suite"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/ee/ee1acfa55eb1476c86c5c4a68f256a67b25289ab.php:1
+msgid "Authentication"
+msgstr "Identification"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/ef/efc007a393f66cdb14d57d385822a3d9e36ef873.php:1
+msgid "Save"
+msgstr "Enregister"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/f2/f28ff73f61bf88ff038f8bfb907a4af7e63b3862.php:1
+msgid "Cache life(0 = never expire)"
+msgstr ""
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/f3/f3092d95d44bc1215a73371067e883127241a5e2.php:1
+msgid "Cache directory"
+msgstr "Dossier de stockage du cache"
+
+#: /Users/flochtililoch/Work/www/applications/admin/var/cache/i18n/content/f4/f4f4473df8cb59f0a369aebee3d1509adc0151c6.php:1
+msgid "Disabled"
+msgstr "Désactivé"
+
+#~ msgid "Average"
+#~ msgstr "Moyenne"
+
+#, fuzzy
+#~ msgid ":field must be a email address"
+#~ msgstr ":field doit être une adresse email valide"
+
+#, fuzzy
+#~ msgid "login"
+#~ msgstr "connexion"
+
+#~ msgid "Please try again"
+#~ msgstr "Essayez à nouveau"
+
+#~ msgid "Min"
+#~ msgstr "Min"
+
+#~ msgid "Kohana"
+#~ msgstr "Kohana"
+
+#~ msgid "Benchmark"
+#~ msgstr "Benchmark"
+
+#~ msgid "Max"
+#~ msgstr "Max"
+
+#~ msgid "Total"
+#~ msgstr "Total"
+
+#~ msgid "Requests"
+#~ msgstr "Requêtes"
+
+#~ msgid "Login / password incorrect"
+#~ msgstr "Pseudo / mot de passe incorrect"
+
+#, fuzzy
+#~ msgid "Title"
+#~ msgstr "Total"
+
+#~ msgid "Username :"
+#~ msgstr "Pseudo :"
+
+#~ msgid "Hello World!"
+#~ msgstr "Bonjour Monde!"
+
+#~ msgid "seconds"
+#~ msgstr "secondes"

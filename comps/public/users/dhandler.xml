@@ -1,0 +1,34 @@
+<comp>
+	<php>
+		<![CDATA[
+
+		$username = $this->request->param(0);
+		$user = NULL;
+		$user_saved = NULL;
+		$form = array();
+
+		// If username was sent in the URL
+		if($username !== NULL)
+		{
+			// If username passed in the URL exists, load it and shift param
+			if(($user = ORM::Load('User')->findOneBy(array('login' => $username))) !== NULL)
+			{
+				$this->request->shift_param();
+
+				// If user form was posted
+				if(count($_POST))
+				{
+					// Set user saved flag
+					$user_saved = ($form = $user->update($_POST));
+				}
+			}
+		}
+		]]>
+	</php>
+	<process>
+		<key name="title" context="global">$username !== NULL ? I18n::get('User : ${username}', array('username' => $username)) : I18n::get('Users')</key>
+		<key name="user">$user</key>
+		<key name="form">$form</key>
+		<key name="user_saved">$user_saved</key>
+	</process>
+</comp>

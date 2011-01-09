@@ -1,27 +1,25 @@
-<p tal:condition="logged_in">
-	<div i18n:translate="">Welcome <span i18n:name="user" tal:replace="user/getFirstname"/></div>
+<div tal:condition="logged_in" id="login">
+	<div i18n:translate="">Welcome <span i18n:name="user" tal:replace="logged_user/getFirstname"/></div>
 	<a tal:attributes="href base_uri:logout" i18n:translate="">Sign off</a>
-</p>
+</div>
 <div tal:condition="not: logged_in" tal:omit-tag="">
 	<form name="login" method="post" tal:attributes="action uri;" id="login">
-		<fieldset>
-			<legend i18n:translate="">Login</legend>
-			<p class="clearfix">
-				<label for="username" i18n:translate="">Username :</label>
-				<input id="username" name="username" type="text"/>
-			</p>
-			<p class="clearfix">
-				<label for="password" i18n:translate="">Password :</label>
-				<input id="password" name="password" type="password"/>
-			</p>
-			<p class="clearfix">
-				<label for="remember_me" i18n:translate="">Remember me</label>
-				<input id="remember_me" name="remember_me" type="checkbox"/>
-				<input name="action" type="hidden" value="login"/>
-				<input type="submit" name="signin" value="signin" id="signin"/>
-			</p>
-			<p class="register">Not yet a member? <a href="/register" i18n:translate="" tal:attributes="href uri:/register">Register</a></p>
-		</fieldset>
-		<p tal:condition="login_failed | FALSE" i18n:translate="" class="error">Login / password incorrect</p>
+		<p class="clearfix">
+			<label for="username" i18n:translate="">Username</label>
+			<input id="username" name="username" type="text"/>
+		</p>
+		<p class="clearfix">
+			<label for="password" i18n:translate="">Password</label>
+			<input id="password" name="password" type="password"/>
+		</p>
+		<p class="clearfix remember_me">
+			<label for="remember_me" i18n:translate="">Remember me</label>
+			<input id="remember_me" name="remember_me" type="checkbox"/>
+		</p>
+		<p class="clearfix">
+			<input name="action" type="hidden" value="login"/>
+			<input type="submit" name="signin" i18n:attributes="value" value="signin" id="signin"/>
+		</p>
+		<p tal:condition="login_failed" i18n:translate="" class="error">Please try again</p>
 	</form>
 </div>

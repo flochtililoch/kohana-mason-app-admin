@@ -1,0 +1,45 @@
+<form tal:condition="user" action="" method="post" id="user_edit" class="box">
+	<p tal:condition="user_is_admin">
+		<label for="edit_login" i18n:translate="">Login</label>
+		<input type="text" id="edit_login" name="login" tal:attributes="value form/data/login | user/getLogin | nothing; class user/json_rules/login | nothing"/>
+		<span tal:condition="exists: form/errors/login" tal:content="form/errors/login" class="error"/>
+	</p>
+	<p>
+		<label for="edit_firstname" i18n:translate="">Firstname</label>
+		<input type="text" id="edit_firstname" name="firstname" tal:attributes="value form/data/firstname | user/getFirstname | nothing; class user/json_rules/firstname | nothing"/>
+		<span tal:condition="exists: form/errors/firstname" i18n:translate="form/errors/firstname" class="error"/>
+	</p>
+	<p>
+		<label for="edit_lastname" i18n:translate="">Lastname</label>
+		<input type="text" id="edit_lastname" name="lastname" tal:attributes="value form/data/lastname | user/getLastname | nothing"/>
+		<span tal:condition="exists: form/errors/lastname" tal:content="form/errors/lastname" class="error"/>
+	</p>
+	<p>
+		<label for="edit_birthday" i18n:translate="">Birthday</label>
+		<input tal:replace="structure comp: form/date; form/data/birthday | user/getBirthday/getTimestamp | nothing; string:edit_birthday; string:short; string:none"/>
+		<span tal:condition="exists: form/errors/birthday" tal:content="form/errors/birthday" class="error"/>
+	</p>
+	<p>
+		<label for="locale" i18n:translate="">Locale</label>
+		<select name="locale" id="locale">
+			<tal:block tal:repeat="locale orm: Locale/FindAll">
+				<tal:block tal:define="locale_code locale/getLocale; locale_desc locale/getDescription; user_locale_code user/getLocale">
+					<option tal:content="string: ${locale_code} - ${locale_desc}" tal:attributes="value locale_code; selected php: locale_code EQ user_locale_code"/>
+				</tal:block>
+			</tal:block>
+		</select>
+		<span tal:condition="exists: form/errors/locale" tal:content="form/errors/locale" class="error"/>
+	</p>
+	<p>
+		<input type="hidden" name="csrf" tal:attributes="value static: CSRF/Token; user/getLogin"/>
+		<input type="submit" i18n:attributes="value Save"/>
+	</p>
+</form>
+<div tal:condition="not: user" id="user_list" class="box">
+	<p i18n:translate="">Here's a list of existing users</p>
+	<ul>
+		<li tal:repeat="user orm: User/FindAll">
+			<a tal:define="uri uri:users" tal:attributes="href string:${uri}/${user/getLogin}; title string:Edit ${user/getLogin}" tal:content="user/getLogin"/>
+		</li>
+	</ul>
+</div>

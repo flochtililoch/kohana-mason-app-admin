@@ -7,45 +7,32 @@ Entities\User:
       generator:
         strategy: AUTO
   fields:
-    login:
+    gender:
       type: string
-      length: 60
-      unique: true
+      length: 1
+      rules:
+      regex: /^(F|M){1}$/
     password:
       type: string
       length: 60
+      rules:
+        not_empty: true
+        min_lenth: 2
+        max_length: 8
     firstname:
       type: string
       length: 50
+      filters: trim
+      rules:
+        max_length: 50
+        regex: /^.*(?=.+[a-z]).*$/
     lastname:
       type: string
       length: 50
+      filters: trim
+      rules:
+        max_length: 50
+        regex: /^.*(?=.+[a-z]).*$/
     birthday:
-      type: time
-    locale:
-      type: string
-      length: 5
-  oneToMany:
-    token:
-      targetEntity: Entities\Token
-      mappedBy: user
-    address:
-      targetEntity: Entities\Address
-      mappedBy: user
-    email:
-      targetEntity: Entities\Email
-      mappedBy: user
-    phone:
-      targetEntity: Entities\Phone
-      mappedBy: user
-  manyToMany:
-    roles:
-      targetEntity: Entities\Role
-      joinTable:
-        name: users_roles
-        joinColumns:
-          user_id:
-            referencedColumnName: id
-        inverseJoinColumns:
-          role_id:
-            referencedColumnName: id
+      type: datetime
+      rules: date

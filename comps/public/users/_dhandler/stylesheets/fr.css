@@ -1,0 +1,9 @@
+#user_edit label
+{
+	width:170px;
+	text-align:right;
+}
+#user_edit input[type=submit]
+{
+	margin-left:322px;
+}
