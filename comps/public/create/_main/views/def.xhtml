@@ -1,0 +1,53 @@
+<legend i18n:translate="">Application main settings</legend>
+<p>
+	<label for="name" i18n:translate="">Name</label>
+	<input type="text" name="name" id="name" value=""/>
+</p>
+<p>
+	<label for="locales" i18n:translate="">Enabled locales</label>
+	<select tal:replace="structure comp: form/locales; string:locales; string:locales[]; string:multiple"/>
+</p>
+<p>
+	<label for="default_view_type" i18n:translate="">Default views type</label>
+	<select id="default_view_type" name="default_view_type">
+		<option value="PHP">PHP / HTML</option>
+		<option value="TAL">TAL</option>
+	</select>
+</p>
+<p class="checkbox">
+	<label for="errors" i18n:translate="">Show errors</label>
+	<input type="checkbox" id="errors" name="errors"/>
+</p>
+<p class="checkbox">
+	<label for="profiling" i18n:translate="">Profiling enabled</label>
+	<input type="checkbox" id="profiling" name="profiling"/>
+</p>
+
+<p class="checkbox">
+	<label for="cache" i18n:translate="">Caching enabled</label>
+	<input type="checkbox" id="cache" name="cache"/>
+</p>
+<p>
+	<label for="cache_lifetime"><span i18n:translate="">Cache life</span><small i18n:translate="">(0 = never expire)</small></label>
+	<input type="text" id="cache_lifetime" name="cache_lifetime"/>
+</p>
+<p>
+	<label for="cache_directory" i18n:translate="">Cache directory</label>
+	<input type="text" id="cache_directory" name="cache_directory"/>
+</p>
+<p class="checkbox">
+	<label for="logging" i18n:translate="">Logging enabled</label>
+	<input type="checkbox" id="logging" name="logging"/>
+</p>
+<p>
+	<label for="logs_directory" i18n:translate="">Logs directory</label>
+	<input type="text" id="logs_directory" name="logs_directory"/>
+</p>
+<p>
+	<label for="debug" i18n:translate="">Debug level</label>
+	<select id="debug" name="debug">
+		<option value="FALSE" i18n:translate="">Disabled</option>
+		<option value="HTML">HTML</option>
+		<option value="JSON">JSON</option>
+	</select>
+</p>

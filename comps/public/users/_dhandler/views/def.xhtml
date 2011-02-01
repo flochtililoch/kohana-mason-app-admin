@@ -21,13 +21,7 @@
 	</p>
 	<p>
 		<label for="locale" i18n:translate="">Locale</label>
-		<select name="locale" id="locale">
-			<tal:block tal:repeat="locale orm: Locale/FindAll">
-				<tal:block tal:define="locale_code locale/getLocale; locale_desc locale/getDescription; user_locale_code user/getLocale">
-					<option tal:content="string: ${locale_code} - ${locale_desc}" tal:attributes="value locale_code; selected php: locale_code EQ user_locale_code"/>
-				</tal:block>
-			</tal:block>
-		</select>
+		<select tal:replace="structure comp: form/locales; string:locale; string:locale"/>
 		<span tal:condition="exists: form/errors/locale" tal:content="form/errors/locale" class="error"/>
 	</p>
 	<p>

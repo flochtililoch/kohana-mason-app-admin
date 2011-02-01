@@ -58,6 +58,31 @@
 			$debug['html'] = Kohana::$debug === Kohana::DEBUG_HTML;
 		}
 
+		/*	CODE USED TO GENERATE LOCALES FROM OLD LOCALE TABLE...
+		$languages = ORM::load('Language');
+		$countries = ORM::load('Country');
+		$locales2 = ORM::load('Locale2')->findAll();
+		
+		foreach($locales2 as $locale2)
+		{
+			$language = $languages->find(substr($locale2->getLocale(), 0, 2));
+			$country = $countries->find(substr($locale2->getLocale(), 3, 5));
+			
+			$locale = new Entities\Locale;
+			$locale->setLanguage($language);
+			$locale->setCountry($country);
+			ORM::instance()->persist($locale);
+			ORM::instance()->flush();
+			echo Kohana::debug($locale);
+		}*/
+		/*$locales = ORM::load('Locale')->findAll();
+		foreach($locales as $locale)
+		{
+			$country = $locale->getCountry();
+			$language = $locale->getLanguage();
+			echo Kohana::debug($language->getIso().'_'.$country->getIso().'('.$language->getLanguage().' --- '.$country->getCountry().')');
+		} */
+
 		]]>
 	</php>
 	<process>

@@ -2,33 +2,71 @@
 	<php>
 		<![CDATA[
 
-		$next_forms = array(
-			'dhandler' => 'domains',
-			'domains' => 'save'
+		$init = FALSE;
+		$forms = array(
+			'dhandler' => 'main',
+			'main' => 'domains',
+			'domains' => 'confirm'
 			);
+			
+		$data_rules = array(
+			'main' => array(
+				'name' => array('regex' => array('/[a-z]{1,8}/')),
+				'locales' => 'i18n::valid_locale'
+			));
+			
+		$data_filters = array(
+			'main' => array(
+				'name' => 'trim'
+			));
 		
 		// PREPROCESS DATA
 		switch($this->request->controller)
 		{
 			case 'dhandler' :
+				$init = TRUE;
+				break;
+
+			case 'main' :
 				
 				break;
-
-			case 'domains' :
-
-				break;
 		}
-
-		// PROCESS FORM
-		if(count($_POST))
+		
+		$controller = count($this->request->param()) ? $this->request->shift_param() : $this->request->controller;
+		
+		// TODO : CHECK FORM HERE
+		if(array_key_exists($controller, $forms) && count($_POST))
 		{
-			Session::instance()->set($next_forms[$this->request->controller], $_POST);
-			$this->request->redirect(I18n::instance()->uri('create/'.$next_forms[$this->request->controller]));
+			Session::instance()->set($controller, $_POST);
+			$this->request->redirect(I18n::instance()->uri('create/'.$forms[$controller]));
 		}
-		
-		$this->data = Session::instance()->get($this->request->controller);
-		
+		elseif($controller === 'confirm')
+		{
+			//
+			
+			$app_data = array();
+			foreach($forms as $form)
+			{
+				$app_data[$form] = Session::instance()->get($form);
+				if(is_array($app_data[$form]))
+				{
+					//$v = Validate::factory($app_data[$form]);
+					//$fv = $v->process($data_rules[$form], $data_filters[$form]);
+				}
+			}
+			echo Kohana::debug($app_data/*app_data*/);
+			die();
+		}
+
+		if($controller !== 'dhandler')
+		{
+			$form = array_flip($forms);
+			$this->data = Session::instance()->get($form[$controller]);
+		}
+
 		]]>
 	</php>
-	<process/>
+	<process>
+		<key name="init">$init</key>
+	</process>
 </comp>
