@@ -36,3 +36,8 @@ Entities\User:
     birthday:
       type: datetime
       rules: date
+    locale:
+      type: string
+      length: 5
+      rules:
+        i18n::valid_locale
