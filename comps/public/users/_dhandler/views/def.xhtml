@@ -16,12 +16,12 @@
 	</p>
 	<p>
 		<label for="edit_birthday" i18n:translate="">Birthday</label>
-		<input tal:replace="structure comp: form/date; form/data/birthday | user/getBirthday/getTimestamp | nothing; string:edit_birthday; string:short; string:none"/>
+		<input tal:replace="structure comp: form/date; form/data/birthday | user/getBirthday/getTimestamp | nothing; string:edit_birthday; string:birthday; string:short; string:none"/>
 		<span tal:condition="exists: form/errors/birthday" tal:content="form/errors/birthday" class="error"/>
 	</p>
 	<p>
 		<label for="locale" i18n:translate="">Locale</label>
-		<select tal:replace="structure comp: form/locales; string:locale; string:locale"/>
+		<select tal:replace="structure comp: form/locales; string:locale; string:locale; form/data/locale | user/getLocale"/>
 		<span tal:condition="exists: form/errors/locale" tal:content="form/errors/locale" class="error"/>
 	</p>
 	<p>

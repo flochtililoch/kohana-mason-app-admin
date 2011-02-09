@@ -11,7 +11,9 @@
 			
 		$data_rules = array(
 			'main' => array(
-				'name' => array('regex' => array('/[a-z]{1,8}/')),
+				'name' => array(
+					'regex' => array('/^[A-Za-z0-9-]+$/')
+					),
 				'locales' => 'i18n::valid_locale'
 			));
 			
@@ -37,8 +39,16 @@
 		// TODO : CHECK FORM HERE
 		if(array_key_exists($controller, $forms) && count($_POST))
 		{
-			Session::instance()->set($controller, $_POST);
-			$this->request->redirect(I18n::instance()->uri('create/'.$forms[$controller]));
+			$v = Validate::factory($_POST)->process($data_rules[$controller], $data_filters[$controller]);
+			if($v === TRUE)
+			{
+				Session::instance()->set($controller, $_POST);
+				$this->request->redirect(I18n::instance()->uri('create/'.$forms[$controller]));
+			}
+			else
+			{
+				echo Kohana::debug($v);
+			}
 		}
 		elseif($controller === 'confirm')
 		{
@@ -50,12 +60,10 @@
 				$app_data[$form] = Session::instance()->get($form);
 				if(is_array($app_data[$form]))
 				{
-					//$v = Validate::factory($app_data[$form]);
-					//$fv = $v->process($data_rules[$form], $data_filters[$form]);
+				
 				}
 			}
-			echo Kohana::debug($app_data/*app_data*/);
-			die();
+			
 		}
 
 		if($controller !== 'dhandler')
