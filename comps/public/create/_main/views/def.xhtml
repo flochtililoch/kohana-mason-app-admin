@@ -1,11 +1,13 @@
 <legend i18n:translate="">Application main settings</legend>
 <p>
 	<label for="name" i18n:translate="">Name</label>
-	<input type="text" name="name" id="name" value=""/>
+	<input type="text" name="name" id="name" value="" tal:attributes="value form/data/name | null;"/>
+	<span tal:condition="exists: form/errors/name" tal:content="form/errors/name" class="error"/>
 </p>
 <p>
 	<label for="locales" i18n:translate="">Enabled locales</label>
-	<select tal:replace="structure comp: form/locales; string:locales; string:locales[]; null; string:multiple"/>
+	<select tal:replace="structure comp: form/locales; string:locales; string:locales[]; form/data/locales | nothing; string:multiple"/>
+	<span tal:condition="exists: form/errors/locales" tal:content="form/errors/locales" class="error"/>
 </p>
 <p>
 	<label for="default_view_type" i18n:translate="">Default views type</label>

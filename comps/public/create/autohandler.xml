@@ -1,80 +1,122 @@
 <comp>
+	<attr>
+		<key name="form">NULL</key>
+		<key name="form_expired">NULL</key>
+	</attr>
 	<php>
 		<![CDATA[
 
 		$init = FALSE;
-		$forms = array(
+
+		$steps = array(
 			'dhandler' => 'main',
 			'main' => 'domains',
 			'domains' => 'confirm'
 			);
 			
-		$data_rules = array(
+		$forms = array(
 			'main' => array(
-				'name' => array(
-					'regex' => array('/^[A-Za-z0-9-]+$/')
+				'fields' => array('name', 'locales'),
+				'rules' => array(
+					'name' => array(
+								'regex' => array('/^[A-Za-z0-9-]+$/'),
+								'not_empty' => array(TRUE)
+								),
+					'locales' => array(
+								'i18n::valid_locale' => array(TRUE),
+								'not_empty' => array(TRUE)
+								),
 					),
-				'locales' => 'i18n::valid_locale'
-			));
+				'filters' =>array(
+					'name' => 'trim'
+					)
+				),
+			'domains' => array(
+				'fields' => array('default_domain', 'channel', 'domain'),
+				'rules' => array(
+					'default_domain' => array(),
+					'channel' => array(),
+					'domain' => array()
+					),
+				'filters' => array(
+					'default_domain' => 'trim'
+					)
+				)
+			);
 			
-		$data_filters = array(
-			'main' => array(
-				'name' => 'trim'
-			));
-		
-		// PREPROCESS DATA
-		switch($this->request->controller)
-		{
-			case 'dhandler' :
-				$init = TRUE;
-				break;
+		// Current step is the running component / 'virtual' component
+		$step = count($this->request->param()) ? $this->request->shift_param() : $this->request->controller;
 
-			case 'main' :
-				
-				break;
-		}
-		
-		$controller = count($this->request->param()) ? $this->request->shift_param() : $this->request->controller;
-		
-		// TODO : CHECK FORM HERE
-		if(array_key_exists($controller, $forms) && count($_POST))
+		// If step exists, data posted and csrf token is valid
+		if(array_key_exists($step, $steps) && count($_POST) && array_key_exists('csrf', $_POST))
 		{
-			$v = Validate::factory($_POST)->process($data_rules[$controller], $data_filters[$controller]);
-			if($v === TRUE)
+			if(CSRF::valid($_POST['csrf'], $step))
 			{
-				Session::instance()->set($controller, $_POST);
-				$this->request->redirect(I18n::instance()->uri('create/'.$forms[$controller]));
+				// All fields default to NULL
+				$allowed_fields = array_map(function($n){ return null; }, array_flip($forms[$step]['fields']));
+				
+				// Keep data from allowed fields only
+				$data_posted = array_intersect_key(
+									array_merge(
+										$allowed_fields,
+										$_POST
+										),
+									$allowed_fields
+									);
+
+				// Validate data
+				$this->form = Validate::factory($data_posted)->process(
+					$forms[$step]['rules'],
+					$forms[$step]['filters']
+					);
+				
+				// If data is valid
+				if($this->form === TRUE)
+				{
+					// Store data in session using current step as a key
+					Session::instance()->set($steps[$step], $_POST);
+				
+					// Then redirect to next step
+					$this->request->redirect(I18n::instance()->uri('create/'.$steps[$step]));
+				}
 			}
 			else
 			{
-				echo Kohana::debug($v);
+				$this->form_expired = TRUE;
 			}
 		}
-		elseif($controller === 'confirm')
+		// If last step 'confirmation'
+		elseif($step === 'confirm')
 		{
-			//
-			
-			$app_data = array();
-			foreach($forms as $form)
+			die('confirm');
+			/*$app_data = array();
+			foreach($steps as $form)
 			{
 				$app_data[$form] = Session::instance()->get($form);
 				if(is_array($app_data[$form]))
 				{
 				
 				}
-			}
+			}*/
 			
 		}
 
-		if($controller !== 'dhandler')
+		if($step !== 'dhandler')
 		{
-			$form = array_flip($forms);
-			$this->data = Session::instance()->get($form[$controller]);
+			if(!is_array($this->form))
+			{
+				$this->data = Session::instance()->get($step);
+			}
+		}
+		else
+		{
+			$init = TRUE;
 		}
 
 		]]>
 	</php>
 	<process>
 		<key name="init">$init</key>
+		<key name="step">$step</key>
 	</process>
 </comp>

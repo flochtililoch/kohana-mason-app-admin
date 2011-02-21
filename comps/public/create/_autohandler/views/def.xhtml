@@ -1,7 +1,11 @@
 <form tal:condition="not:init" name="newapp" method="post" action="" class="box">
 	<fieldset>
+		<p class="error" tal:condition="form_expired">Form is invalid / has expired</p>
 		<tal:block tal:replace="structure after"/>
-		<p><input type="submit" i18n:attributes="value next"/></p>
+		<p>
+			<input type="submit" i18n:attributes="value next"/>
+			<input type="hidden" name="csrf" tal:attributes="value static: CSRF/Token, step"/>
+		</p>
 	</fieldset>
 </form>
 <tal:block tal:condition="init" tal:replace="structure after"/>

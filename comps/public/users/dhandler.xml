@@ -6,6 +6,13 @@
 		$user = NULL;
 		$user_saved = NULL;
 		$form = array();
+		$allowed_fields = array(
+			'login',
+			'firstname',
+			'lastname',
+			'birthday',
+			'locale'
+		);
 
 		// If username was sent in the URL
 		if($username !== NULL)
@@ -15,11 +22,19 @@
 			{
 				$this->request->shift_param();
 
-				// If user form was posted
-				if(count($_POST))
+				// If user form was posted and form has a valid csrf token
+				if(count($_POST) && CSRF::valid($_POST['csrf'], $user->getLogin()))
 				{
 					// Set user saved flag
-					$user_saved = ($form = $user->update($_POST));
+					$user_saved = ($form = $user->update(
+						// Remove unallowed keys from $_POST
+						array_intersect_key($_POST, array_flip($allowed_fields))
+					));
+					
+					if($user_saved === TRUE && $username !== $user->getLogin())
+					{
+//						$this->request->redirect($this->request->uri().'/'.$user->getLogin());
+					}
 				}
 			}
 		}

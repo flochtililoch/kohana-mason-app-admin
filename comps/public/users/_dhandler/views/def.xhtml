@@ -25,7 +25,7 @@
 		<span tal:condition="exists: form/errors/locale" tal:content="form/errors/locale" class="error"/>
 	</p>
 	<p>
-		<input type="hidden" name="csrf" tal:attributes="value static: CSRF/Token; user/getLogin"/>
+		<input type="hidden" name="csrf" tal:attributes="value static: CSRF/Token, user/getLogin"/>
 		<input type="submit" i18n:attributes="value Save"/>
 	</p>
 </form>
