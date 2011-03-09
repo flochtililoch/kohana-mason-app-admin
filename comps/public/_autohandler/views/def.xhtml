@@ -11,6 +11,7 @@
 </tal:block>
 <tal:block metal:fill-slot="head">
 	<title tal:condition="exists: title" tal:content="title"/>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
 	<link tal:replace="structure comp: /stylesheets"/>
 	<script type="text/javascript">
 		//<![CDATA[

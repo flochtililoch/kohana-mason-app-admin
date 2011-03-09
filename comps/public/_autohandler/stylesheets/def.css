@@ -47,6 +47,10 @@ p
 	margin: 10px 0;
     padding: 0;
 }
+form p
+{
+	min-height:29px;
+}
 fieldset, input
 {
 	border:1px solid #ccc;
@@ -133,4 +137,8 @@ li
 .checkbox input
 {
 	margin-left:263px;
+}
+input.numeric
+{
+	width:50px;
 }

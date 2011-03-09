@@ -5,51 +5,43 @@
 	<span tal:condition="exists: form/errors/name" tal:content="form/errors/name" class="error"/>
 </p>
 <p>
+	<label for="path" i18n:translate="">Path</label>
+	<input type="text" name="path" id="path" value="" tal:attributes="value form/data/path | null;"/>
+	<span tal:condition="exists: form/errors/path" tal:content="form/errors/path" class="error"/>
+</p>
+<p>
+	<label for="i18n_source" i18n:translate="">Source language</label>
+	<select tal:replace="structure comp: form/locales; string:i18n_source; string:i18n_source; form/data/i18n_source | nothing"/>
+	<span tal:condition="exists: form/errors/i18n_source" tal:content="form/errors/i18n_source" class="error"/>
+</p>
+<p>
+	<label for="timezone" i18n:translate="">Server timezone</label>
+	<select tal:replace="structure comp: form/timezones; string:timezone; string:timezone; form/data/timezone | nothing"/>
+	<span tal:condition="exists: form/errors/timezone" tal:content="form/errors/timezone" class="error"/>
+</p>
+<p>
 	<label for="locales" i18n:translate="">Enabled locales</label>
 	<select tal:replace="structure comp: form/locales; string:locales; string:locales[]; form/data/locales | nothing; string:multiple"/>
 	<span tal:condition="exists: form/errors/locales" tal:content="form/errors/locales" class="error"/>
 </p>
 <p>
 	<label for="default_view_type" i18n:translate="">Default views type</label>
-	<select id="default_view_type" name="default_view_type">
-		<option value="PHP">PHP / HTML</option>
-		<option value="TAL">TAL</option>
+	<select id="default_view_type" name="default_view_type" tal:define="type form/data/default_view_type | nothing">
+		<option value="TAL" tal:define="is_tal php:type EQ 'TAL'" tal:attributes="selected is_tal">TAL</option>
+		<option value="PHP" tal:define="is_php php:type EQ 'PHP'" tal:attributes="selected is_php">PHP / HTML</option>
 	</select>
-</p>
-<p class="checkbox">
-	<label for="errors" i18n:translate="">Show errors</label>
-	<input type="checkbox" id="errors" name="errors"/>
-</p>
-<p class="checkbox">
-	<label for="profiling" i18n:translate="">Profiling enabled</label>
-	<input type="checkbox" id="profiling" name="profiling"/>
-</p>
-
-<p class="checkbox">
-	<label for="cache" i18n:translate="">Caching enabled</label>
-	<input type="checkbox" id="cache" name="cache"/>
+	<span tal:condition="exists: form/errors/default_view_type" tal:content="form/errors/default_view_type" class="error"/>
 </p>
 <p>
-	<label for="cache_lifetime"><span i18n:translate="">Cache life</span><small i18n:translate="">(0 = never expire)</small></label>
-	<input type="text" id="cache_lifetime" name="cache_lifetime"/>
+	<label for="salt" i18n:translate="">Auth salt</label>
+	<input type="text" name="salt" id="salt" tal:attributes="value form/data/salt | null;"/>
+	<span tal:condition="exists: form/errors/salt" tal:content="form/errors/salt" class="error"/>
 </p>
 <p>
-	<label for="cache_directory" i18n:translate="">Cache directory</label>
-	<input type="text" id="cache_directory" name="cache_directory"/>
-</p>
-<p class="checkbox">
-	<label for="logging" i18n:translate="">Logging enabled</label>
-	<input type="checkbox" id="logging" name="logging"/>
-</p>
-<p>
-	<label for="logs_directory" i18n:translate="">Logs directory</label>
-	<input type="text" id="logs_directory" name="logs_directory"/>
-</p>
-<p>
-	<label for="debug" i18n:translate="">Debug level</label>
-	<select id="debug" name="debug">
-		<option value="FALSE" i18n:translate="">Disabled</option>
-		<option value="HTML">HTML</option>
-		<option value="JSON">JSON</option>
+	<label for="environments" i18n:translate="">Environments</label>
+	<select id="environments" name="environments[]" multiple="multiple">
+		<option tal:condition="exists: form" tal:repeat="env valid_envs" tal:content="repeat/env/key" tal:attributes="value env; selected in_array: env, form/data/environments"/>
+		<option tal:condition="null: form" tal:repeat="env valid_envs" tal:content="repeat/env/key" tal:attributes="value env;" selected="selected"/>
 	</select>
+	<span tal:condition="exists: form/errors/environments" tal:content="form/errors/environments" class="error"/>
 </p>

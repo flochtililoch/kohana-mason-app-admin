@@ -1,0 +1,63 @@
+<legend>Environments settings</legend>
+<p tal:condition="form" tal:content="form/errors" class="error"/>
+<table>
+	<caption>Domains</caption>
+	<thead>
+		<tr>
+			<th i18n:translate="">Locale</th>
+			<th i18n:translate="">Channel</th>
+			<th tal:repeat="env data/environments" tal:content="env"/>
+		</tr>
+	</thead>
+	<tbody>
+		<tr tal:repeat="locale data/locales">
+			<td tal:content="locale"/>
+			<td>
+				<input tal:condition="not: form" tal:attributes="id string:${locale}_channel; name string:${locale}[channel]; value repeat/locale/key" value="" class="numeric" type="text"/>
+				<input tal:condition="exists: form/data" tal:attributes="id string:${locale}_channel; name string:${locale}[channel]; value php:form['data'][locale]['channel']" value="" class="numeric" type="text"/>
+			</td>
+			<td tal:repeat="env data/environments">
+				<input tal:condition="not: form" tal:attributes="name string:${locale}[${env}]; id string:${locale}_${env}_domain; value php:env . '.' . data['name'] . '.' . strtolower(substr(locale, 3,2))" class="domain" type="text"/>
+				<input tal:condition="exists: form/data" tal:attributes="name string:${locale}[${env}]; id string:${locale}_${env}_domain; value php:form['data'][locale][env]" class="domain" type="text"/>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<table>
+	<caption>Databases</caption>
+	<thead>
+		<tr>
+			<th tal:repeat="env data/environments" tal:content="env"/>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Host</td>
+			<td tal:repeat="env data/environments">
+				<input tal:condition="not: form" tal:attributes="name string:db[${env}][host]; id string:db_${env}_host;" value="127.0.0.1" class="domain" type="text"/>
+				<input tal:condition="exists: form/data" tal:attributes="name string:db[${env}][host]; id string:db_${env}_host; value php:form['data']['db'][env]['host']" class="domain" type="text"/>
+			</td>
+		</tr>
+		<tr>
+			<td>Database name</td>
+			<td tal:repeat="env data/environments">
+				<input tal:condition="not: form" tal:attributes="name string:db[${env}][name]; id string:db_${env}_name; value data/name" class="domain" type="text"/>
+				<input tal:condition="exists: form/data" tal:attributes="name string:db[${env}][name]; id string:db_${env}_name; value php:form['data']['db'][env]['name']" class="domain" type="text"/>
+			</td>
+		</tr>
+		<tr>
+			<td>User</td>
+			<td tal:repeat="env data/environments">
+				<input tal:condition="not: form" tal:attributes="name string:db[${env}][user]; id string:db_${env}_user;" value="root" class="domain" type="text"/>
+				<input tal:condition="exists: form/data" tal:attributes="name string:db[${env}][user]; id string:db_${env}_user; value php:form['data']['db'][env]['user']" class="domain" type="text"/>
+			</td>
+		</tr>
+		<tr>
+			<td>Password</td>
+			<td tal:repeat="env data/environments">
+				<input tal:condition="not: form" tal:attributes="name string:db[${env}][password]; id string:db_${env}_password;" value="" class="domain" type="text"/>
+				<input tal:condition="exists: form/data" tal:attributes="name string:db[${env}][password]; id string:db_${env}_password; value php:form['data']['db'][env]['password']" class="domain" type="text"/>
+			</td>
+		</tr>
+	</tbody>
+</table>
