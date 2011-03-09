@@ -5,13 +5,13 @@
 		foreach(explode('/', Request::instance()->uri) as $key => $value)
 		{
 			$breadcrumb[$key]['uri'] = ($key > 0 ? $breadcrumb[$key-1]['uri'].'/' : '').$value;
-			$breadcrumb[$key]['label'] = ucfirst($value);
+			$breadcrumb[$key]['label'] = ucfirst(I18n::get($value));
 		}
 		array_unshift(
 			$breadcrumb,
 			array(
 				'uri' => '',
-				'label' => I18n::instance()->translate('Home')
+				'label' => I18n::get('Home')
 				));
 
 		]]>
