@@ -83,6 +83,17 @@
 			echo Kohana::debug($language->getIso().'_'.$country->getIso().'('.$language->getLanguage().' --- '.$country->getCountry().')');
 		} */
 
+		/*$c = mysql_connect('127.0.0.1', 'root', '');
+		$r = mysql_query('select r.country_code, t.name from admin.fips_regions r inner join admin.timezones2 t on r.timezone = t.id group by t.id');
+		while($rows = mysql_fetch_array($r))
+		{
+			$country = ORM::Load('Country')->find($rows[0]);
+			$tz = new Entities\Timezone;
+			$tz->setCountry($country);
+			$tz->setTimezone($rows[1]);
+			ORM::instance()->persist($tz);
+		}
+		ORM::instance()->flush();*/
 		]]>
 	</php>
 	<process>
