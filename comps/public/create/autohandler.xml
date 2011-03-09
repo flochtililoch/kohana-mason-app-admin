@@ -190,18 +190,18 @@
 				
 				// GENERATE CONFIG FILES
 				$files['config/kohana.php'] = sprintf(
-					'<?php'.substr(file_get_contents(MODPATH.'component/templates/config/kohana.php'), 5, -1),
+					'<?php'.substr(file_get_contents(Kohana::find_file('templates', 'config/kohana')), 5, -1),
 					$app_data['environments']['timezone'],
 					$app_data['environments']['i18n_source']
 				);
 				
 				$files['config/auth.php'] = sprintf(
-					'<?php'.substr(file_get_contents(MODPATH.'component/templates/config/auth.php'), 5, -1),
+					'<?php'.substr(file_get_contents(Kohana::find_file('templates', 'config/auth')), 5, -1),
 					$app_data['environments']['salt']
 				);
 				
 				$files['config/orm.php'] = sprintf(
-					'<?php'.substr(file_get_contents(MODPATH.'component/templates/config/orm.php'), 5, -1),
+					'<?php'.substr(file_get_contents(Kohana::find_file('templates', 'config/orm')), 5, -1),
 					$app_data['confirm']['db']['dev']['host'] ? $app_data['confirm']['db']['dev']['host'] : '',
 					$app_data['confirm']['db']['dev']['name'] ? $app_data['confirm']['db']['dev']['name'] : '',
 					$app_data['confirm']['db']['dev']['user'] ? $app_data['confirm']['db']['dev']['user'] : '',
