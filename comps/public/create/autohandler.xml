@@ -60,10 +60,16 @@
 
 		$init = FALSE;
 
-		$steps = array(
+		$actions = array(
 			'dhandler' => 'main',
 			'main' => 'environments',
-			'environments' => 'confirm'
+			'environments' => 'download'
+			);
+			
+		$steps = array(
+			'main' => I18n::get('main'),
+			'environments' => I18n::get('environments'),
+			'download' => I18n::get('download')
 			);
 			
 		$forms = array(
@@ -75,7 +81,7 @@
 								'not_empty' => array(TRUE)
 								),
 					'path' => array(
-								'regex' => array('/^\/(.*)$/')
+								'regex' => array('/^\/(.*)\/$/')
 								),
 					'i18n_source' => array(
 								'i18n::valid_locale' => array(TRUE),
@@ -94,7 +100,7 @@
 								'not_empty' => array(TRUE)
 								),
 					'salt' => array(
-								'regex' => array('/^.*(?=.*[a-z])(?=.*[A-Z]).*$/'),
+								'regex' => array('/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9]*$/'),
 								'not_empty' => array(TRUE),
 								'min_length' => array(6)
 								),
@@ -116,7 +122,7 @@
 		$step = count($this->request->param()) ? $this->request->shift_param() : $this->request->controller;
 
 		// If step exists, data posted
-		if(array_key_exists($step, $steps) && count($_POST) && array_key_exists('csrf', $_POST))
+		if(array_key_exists($step, $actions) && count($_POST) && array_key_exists('csrf', $_POST))
 		{
 			// If csrf token is valid
 			if(CSRF::valid($_POST['csrf'], $step))
@@ -143,10 +149,10 @@
 				if($this->form === TRUE)
 				{
 					// Store data in session using next step as a key
-					Session::instance()->set($steps[$step], $_POST);
+					Session::instance()->set($actions[$step], $_POST);
 				
 					// Then redirect to next step
-					$this->request->redirect(I18n::instance()->uri('create/'.$steps[$step]));
+					$this->request->redirect(I18n::instance()->uri('create/'.$actions[$step]));
 				}
 			}
 			else
@@ -154,26 +160,24 @@
 				$this->form_expired = TRUE;
 			}
 		}
-		// If last step 'confirmation'
-		elseif($step === 'confirm')
+		// If step 'download'
+		elseif($step === 'download')
 		{
 			$app_data = array();
 			
-			foreach($steps as $form)
+			foreach($actions as $form)
 			{
 				$app_data[$form] = Session::instance()->get($form);
 			}
 			
 			$files = array();
-			$cl = array();
 			
-			$apppath = $app_data['environments']['path'];
-			$appname = $app_data['environments']['name'];
-			$cl[] = sprintf(Kohana::config('app.cl.cvs_export'), $appname);
-			foreach($app_data['environments']['locales'] as $locale)
+			$apppath = $app_data[$steps['environments']]['path'];
+			$appname = $app_data[$steps['environments']]['name'];
+			
+			foreach($app_data[$steps['environments']]['locales'] as $locale)
 			{
 				// GENERATE PO FILES
-				$cl[] = sprintf(Kohana::config('app.cl.i18n'), $appname, $locale);
 				if(($_locale = I18n::valid_locale($locale)) !== FALSE)
 				{
 					foreach(array('routes', 'content') as $pofile)
@@ -191,59 +195,58 @@
 				// GENERATE CONFIG FILES
 				$files['config/kohana.php'] = sprintf(
 					'<?php'.substr(file_get_contents(Kohana::find_file('templates', 'config/kohana')), 5, -1),
-					$app_data['environments']['timezone'],
-					$app_data['environments']['i18n_source']
+					$app_data[$steps['environments']]['timezone'],
+					$app_data[$steps['environments']]['i18n_source']
 				);
 				
 				$files['config/auth.php'] = sprintf(
 					'<?php'.substr(file_get_contents(Kohana::find_file('templates', 'config/auth')), 5, -1),
-					$app_data['environments']['salt']
+					$app_data[$steps['environments']]['salt']
 				);
 				
 				$files['config/orm.php'] = sprintf(
 					'<?php'.substr(file_get_contents(Kohana::find_file('templates', 'config/orm')), 5, -1),
-					$app_data['confirm']['db']['dev']['host'] ? $app_data['confirm']['db']['dev']['host'] : '',
-					$app_data['confirm']['db']['dev']['name'] ? $app_data['confirm']['db']['dev']['name'] : '',
-					$app_data['confirm']['db']['dev']['user'] ? $app_data['confirm']['db']['dev']['user'] : '',
-					$app_data['confirm']['db']['dev']['password'] ? $app_data['confirm']['db']['dev']['password'] : '',
-					$app_data['confirm']['db']['test']['host'] ? $app_data['confirm']['db']['test']['host'] : '',
-					$app_data['confirm']['db']['test']['name'] ? $app_data['confirm']['db']['test']['name'] : '',
-					$app_data['confirm']['db']['test']['user'] ? $app_data['confirm']['db']['test']['user'] : '',
-					$app_data['confirm']['db']['test']['password'] ? $app_data['confirm']['db']['test']['password'] : '',
-					$app_data['confirm']['db']['stag']['host'] ? $app_data['confirm']['db']['stag']['host'] : '',
-					$app_data['confirm']['db']['stag']['name'] ? $app_data['confirm']['db']['stag']['name'] : '',
-					$app_data['confirm']['db']['stag']['user'] ? $app_data['confirm']['db']['stag']['user'] : '',
-					$app_data['confirm']['db']['stag']['password'] ? $app_data['confirm']['db']['stag']['password'] : '',
-					$app_data['confirm']['db']['www']['host'] ? $app_data['confirm']['db']['www']['host'] : '',
-					$app_data['confirm']['db']['www']['name'] ? $app_data['confirm']['db']['www']['name'] : '',
-					$app_data['confirm']['db']['www']['user'] ? $app_data['confirm']['db']['www']['user'] : '',
-					$app_data['confirm']['db']['www']['password'] ? $app_data['confirm']['db']['www']['password'] : ''
+					$app_data[$steps['download']]['db']['dev']['host'] ? $app_data[$steps['download']]['db']['dev']['host'] : '',
+					$app_data[$steps['download']]['db']['dev']['name'] ? $app_data[$steps['download']]['db']['dev']['name'] : '',
+					$app_data[$steps['download']]['db']['dev']['user'] ? $app_data[$steps['download']]['db']['dev']['user'] : '',
+					$app_data[$steps['download']]['db']['dev']['password'] ? $app_data[$steps['download']]['db']['dev']['password'] : '',
+					$app_data[$steps['download']]['db']['test']['host'] ? $app_data[$steps['download']]['db']['test']['host'] : '',
+					$app_data[$steps['download']]['db']['test']['name'] ? $app_data[$steps['download']]['db']['test']['name'] : '',
+					$app_data[$steps['download']]['db']['test']['user'] ? $app_data[$steps['download']]['db']['test']['user'] : '',
+					$app_data[$steps['download']]['db']['test']['password'] ? $app_data[$steps['download']]['db']['test']['password'] : '',
+					$app_data[$steps['download']]['db']['stag']['host'] ? $app_data[$steps['download']]['db']['stag']['host'] : '',
+					$app_data[$steps['download']]['db']['stag']['name'] ? $app_data[$steps['download']]['db']['stag']['name'] : '',
+					$app_data[$steps['download']]['db']['stag']['user'] ? $app_data[$steps['download']]['db']['stag']['user'] : '',
+					$app_data[$steps['download']]['db']['stag']['password'] ? $app_data[$steps['download']]['db']['stag']['password'] : '',
+					$app_data[$steps['download']]['db']['www']['host'] ? $app_data[$steps['download']]['db']['www']['host'] : '',
+					$app_data[$steps['download']]['db']['www']['name'] ? $app_data[$steps['download']]['db']['www']['name'] : '',
+					$app_data[$steps['download']]['db']['www']['user'] ? $app_data[$steps['download']]['db']['www']['user'] : '',
+					$app_data[$steps['download']]['db']['www']['password'] ? $app_data[$steps['download']]['db']['www']['password'] : ''
 				);
 				
+				// Generate unique name based on app settings
 				$app_path = sha1(serialize($app_data));
-				$out = '';
-				
-				if(!is_dir(CACHEPATH.$app_path))
-				{
-					// Create directory
-					mkdir(CACHEPATH.$app_path, 0777, TRUE);
-
-					// Set permissions (must be manually set to fix umask issues)
-					chmod(CACHEPATH.$app_path, 0777);
-				}
-				
+								
 				// Export app skeleton
-				system(sprintf(Kohana::config('app.cl.cvs_export'), CACHEPATH.$app_path), $_out);
-				$out .= $_out;
+				exec(sprintf(Kohana::config('app.cl.cvs_export'), CACHEPATH.$app_path));
 				
-				foreach($app_data['environments']['locales'] as $locale)
+				foreach($app_data[$steps['environments']]['locales'] as $locale)
 				{
-					system(sprintf(Kohana::config('app.cl.cvs_export'), CACHEPATH.$app_path, $locale), $_out);
-					$out .= $_out;
+					exec(sprintf(Kohana::config('app.cl.i18n.container'), CACHEPATH.$app_path, $locale));
+					exec(sprintf(Kohana::config('app.cl.i18n.lc_messages'), CACHEPATH.$app_path, $locale));
 				}
 				
-				echo Kohana::debug($out);
+				// Write all custom files
+				foreach($files as $path => $content)
+				{
+					file_put_contents(CACHEPATH.$app_path.'/'.$path, $content);
+				}
 				
+				// Create archive file containting application structure
+				exec(sprintf(Kohana::config('app.cl.pack'), CACHEPATH.$app_path, $appname, $app_path));
+				
+				$this->request->send_file(CACHEPATH.$appname.'.zip');
+				$this->request->redirect(I18n::instance()->uri('create/done'));
 			}
 		}
 
