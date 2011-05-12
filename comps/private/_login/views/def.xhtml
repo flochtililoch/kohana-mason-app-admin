@@ -1,6 +1,6 @@
-<div tal:condition="logged_in" id="login">
-	<div i18n:translate="">Welcome <span i18n:name="user" tal:replace="logged_user/getFirstname"/></div>
-	<a tal:attributes="href base_uri:logout" i18n:translate="">Sign off</a>
+<div tal:condition="logged_in" id="login" class="logged-in clearfix">
+	<a tal:attributes="href uri:profile" i18n:translate="" class="btn profile">Welcome <span i18n:name="user" tal:replace="logged_user/getFirstname"/></a>
+	<a tal:attributes="href base_uri:logout" i18n:translate="" class="btn sign-off">Sign off</a>
 </div>
 <div tal:condition="not: logged_in" tal:omit-tag="">
 	<form name="login" method="post" tal:attributes="action uri;" id="login">

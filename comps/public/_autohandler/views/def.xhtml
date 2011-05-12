@@ -2,9 +2,9 @@
 	<div id="header" class="clearfix box">
 		<div tal:replace="structure comp: /login"/>
 		<h1 tal:condition="exists:title" tal:content="title"/>
+		<div tal:condition="not:home" tal:replace="structure comp:breadcrumb"/>
+		<div tal:condition="logged_in" tal:replace="structure after"/>
 	</div>
-	<div tal:condition="not:home" tal:replace="structure comp:breadcrumb"/>
-	<div tal:condition="logged_in" tal:replace="structure after"/>
 	<div id="footer"/>
 	<script tal:replace="structure comp: /scripts"/>
 	<tal:block tal:condition="debug/html | debug/json" tal:replace="structure comp: /debug; debug"/>

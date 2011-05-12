@@ -1,0 +1,26 @@
+#dashboard
+{
+	
+}
+
+#dashboard li a
+{
+	height: 128px;
+	display: block;
+	width: auto;
+	background-repeat: no-repeat;
+	font-size: 40px;
+	padding: 0 135px;
+	line-height: 140px;
+	
+}
+
+#dashboard .users
+{
+	background-image: url(/assets/TokenW-PNG/OS+Folders/Personal.png);
+}
+
+#dashboard .create
+{
+	background-image: url(/assets/TokenW-PNG/OS+Folders/Applications.png);
+}

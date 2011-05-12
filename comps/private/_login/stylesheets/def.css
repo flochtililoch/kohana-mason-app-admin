@@ -4,6 +4,18 @@
 	color:#666;
 	position:relative;
 }
+#login.logged-in .btn
+{
+	float:left;
+}
+#login.logged-in .profile
+{
+	background: url(/assets/TokenW-PNG/Communication+Internet/Contact.png);
+}
+#login.logged-in .sign-off
+{
+	background: url(/assets/TokenW-PNG/System+Settings/Power.png);
+}
 #login div
 {
 	display:inline;
