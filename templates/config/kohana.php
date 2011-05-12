@@ -19,12 +19,14 @@ return array
 		),
 		'cache_life'	=> 0,
 		'cache_dir'		=> APPPATH.'var/cache',
+
 	'profile'		=> array(					// Profiling status per env.
 		Kohana::DEVELOPMENT => TRUE,
 		Kohana::TESTING => FALSE,
 		Kohana::STAGING => FALSE,
 		Kohana::PRODUCTION => FALSE
 		),
+
 	'logging'		=> array(					// Logging status per env.
 		Kohana::DEVELOPMENT => TRUE,
 		Kohana::TESTING => TRUE,
@@ -32,6 +34,7 @@ return array
 		Kohana::PRODUCTION => FALSE
 		),
 		'log_dir'		=> APPPATH.'var/log',
+
 	'errors'		=> array(					// Display errors per env.
 		Kohana::DEVELOPMENT => TRUE,
 		Kohana::TESTING => TRUE,
