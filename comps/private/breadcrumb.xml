@@ -2,7 +2,7 @@
 	<php>
 		<![CDATA[
 		$breadcrumb = array();
-		foreach(explode('/', Request::instance()->uri) as $key => $value)
+		foreach(explode('/', Request::$initial->uri()) as $key => $value)
 		{
 			$breadcrumb[$key]['uri'] = ($key > 0 ? $breadcrumb[$key-1]['uri'].'/' : '').$value;
 			$breadcrumb[$key]['label'] = ucfirst(I18n::get($value));

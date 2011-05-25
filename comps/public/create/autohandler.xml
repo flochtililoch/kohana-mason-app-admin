@@ -108,18 +108,15 @@
 								'Kohana::valid_environment' => array(TRUE),
 								'not_empty' => array(TRUE)
 								),
-					),
-				'filters' =>array(
-					'name' => 'trim'
 					)
 				),
 			'environments' => array(
 				'validate' => 'environments_validate'
 				)
 			);
-			
+
 		// Current step is the running component / 'virtual' component
-		$step = count($this->request->param()) ? $this->request->shift_param() : $this->request->controller;
+		$step = count($this->request->param()) ? $this->request->shift_param() : $this->request->controller();
 
 		// If step exists, data posted
 		if(array_key_exists($step, $actions) && count($_POST) && array_key_exists('csrf', $_POST))
@@ -129,7 +126,7 @@
 			{
 				//Remove token from posted data
 				unset($_POST['csrf']);
-				
+
 				// If custom validation method is required
 				if(array_key_exists('validate', $forms[$step]))
 				{
@@ -139,7 +136,7 @@
 				else
 				{
 					// Validate data through common system
-					$this->form = Validate::form(
+					$this->form = Validation::form(
 						$_POST,
 						$forms[$step]
 						);
